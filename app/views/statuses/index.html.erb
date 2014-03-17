@@ -1,4 +1,5 @@
-<h1>Listing statuses</h1>
+<!--
+<h1>All Statuses</h1>
 
 <table>
   <tr>
@@ -22,4 +23,41 @@
 
 <br />
 
-<%= link_to 'New Status', new_status_path %>
+<%= link_to 'New Status', new_status_path %> 
+SCRAP ALL THE ORIGINAL TABLE HTML TO MAKE THIS PAGE LOOK BETTER
+-->
+
+
+
+
+
+<div class="page-header">
+    <h1>All of the Statuses</h1>
+</div>
+
+<!--link to the new statuses and add a class to it so we can link it to a button in bootstrap and btn-success gives it a different color-->
+<%= link_to "Post a New Status", new_status_path, class: "btn btn-success" %>
+
+<!--now create a loop for all of our statuses and exits at a variable called @statuses-->
+<!--each status which takes a block which would be the do which will be piped and each time it would be placed in a variable called status-->
+<!--arrow and percent sign signals a erb tag-->
+
+<% @statuses.each do |status| %>  <!--this will loop however many times there are statuses so we will create a div tag to print out the name with each status-->
+<div class="status">
+    <strong><%= status.name %></strong>  <!--strong tag with status variable with the methond called name-->
+    <p><%= status.content %></p>  
+    <div class="meta">  <!--allows us to style it later-->
+      <!--<%= link_to "Show", status %> going to take out the show status link and going to add a time instead of when the status was created but when you pass status.created_at to time_ago_in_words it displays not the date but how long ago + " ago" to make it make more sense-->
+      <%= link_to time_ago_in_words(status.created_at) + " ago", status %>
+       <!--for links use the links to method so you don't have to worry about the url in this case will link to Show and will pass the status object which rails will understand -->
+      <!--puts the content of the status using the erb tag with the equal sign to echo the content into the page-->
+      <span class="admin">
+          | <%= link_to "Edit", edit_status_path(status) %>
+          | <!--divider just for looks-->
+          <%= link_to "Delete", status, method: :delete, data: { confirm: "Are you sure you want to delete this status?"} %> <!--add the special method delete and add the data to confirm-->
+      </span>
+    </div>
+</div>
+      <!--we don't necessary want to display the edit and destroy so we will separate it in a span class of admin so we can selectively hide and show these later which edit_status_path passes the status itself so it knows which one to edit-->
+
+<% end %> <!--closes and notes the end the loop-->

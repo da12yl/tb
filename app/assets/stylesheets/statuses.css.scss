@@ -1,3 +1,38 @@
 // Place all the styles related to the statuses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// modify the status class bottom border 1 pixel thick color light gray
+// with padding of 5 pixels top and bottom and 0 left and right between each status
+.status {
+  border-bottom: solid 1px #CCC;
+  padding: 5px 0;
+}
+
+// the paragraph tag is giving a spacing issue
+// when you inspect it, it is showing that by default in the bootstrap.css 
+// is defined by 9 pixels of bottom margin to it
+// so override the paragaph in the status
+.status p {
+    margin: 4px 0;
+}
+
+// will add css to highlight the status when it is hovered over
+// target the status when it has the hover class in addition to it
+.status.hover {
+    background: #FAFAFA;
+}
+
+// will make another css rule to hide the edit and delete also together with javascript
+.status .admin {
+    display: none;
+}
+
+// will add another css rule to make them come back
+// any element having both the class element and hover will be targeted
+// by default we don't have a hover class in status so we will create that in javascript
+// when we have a hover class this rule will overwrite the previous rule before this
+// will display inline instead of none
+.status.hover .admin {
+    display: inline;
+}
