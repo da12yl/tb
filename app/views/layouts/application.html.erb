@@ -13,13 +13,18 @@
             <a href="#" class="brand ">Treebook</a>   <!--placed content inside of navbar with styling brandname-->
                 <ul class="nav"> <!--adding in links to the nav bar-->
                   <li><%= link_to "All Statuses", statuses_path %></li> <!--gonna use erb with a link to function rather than an a tag with name of link All Statuses linked to a url helper method statuses_path rake routes in the shell would help you determine and find the path for the all statuses statuses_path by printing all the urls that you would use with the first coulumn showing the names of the helper methods you would use and just add _path to the file name you want to get to-->
-    </ul>
+                </ul>
         </div>
       </div>
     </div>
 
-    <div class="container">     <!--centers the page-->
+    <div class="container">     <!--centers the page-->       
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        
       <%= yield %>
+
     </div>
+
 </body>
 </html>
